@@ -3,9 +3,9 @@ import { TotalVisits } from "@/app/components/commons/TotalVisits";
 import UserCard from "@/app/components/commons/UserCard";
 import { auth } from "@/app/lib/auth";
 import { getProfileData } from "@/app/server/GetProfileData";
-import { Plus } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import NewProject from "./NewProject";
 
 export default async function ProfilePage({
   params,
@@ -44,10 +44,11 @@ export default async function ProfilePage({
       <ProjectCard />
       <ProjectCard />
       <ProjectCard />
-      <button className="w-[340px] h-[132px] rounded-[20px] bg-background-secondary flex items-center gap-2 justify-center hover:border border-dashed ">
-          <Plus className="size-10 text-accent-green" />
-          <span>New Project</span>
-      </button>
+      {
+        isOwner && (
+        <NewProject profileId={profileId} />
+      )}
+      
      </div>
      <div className="absolute bottom-4 right-0 left-0 w-min mx-auto">
       <TotalVisits />
