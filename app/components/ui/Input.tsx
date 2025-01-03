@@ -1,15 +1,16 @@
-import { cn } from "../../lib/utils";
+import { InputHTMLAttributes } from 'react';
 
-export default function TextInput(props: React.InputHTMLAttributes<HTMLInputElement>) {
+interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export default function TextInput(props: TextInputProps) {
   return (
     <input
-    {...props} 
-    className={cn(
-      `w-full p-3 bg-background-secondary text-white placeholder:text-content-placeholder 
-      rounded-xl border border-transparent hover:border-border-secondary hover:text-content-body active:border-border-tertiary`,
-      props.className
-      )}
-      />
-      
-  )
+      type="text"
+      className="bg-background-secondary text-white p-3 rounded-xl outline-none"
+      {...props}
+    />
+  );
 }
