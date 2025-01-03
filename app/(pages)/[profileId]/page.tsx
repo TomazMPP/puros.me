@@ -1,6 +1,6 @@
 import ProjectCard from "@/app/components/commons/ProjectCard";
 import { TotalVisits } from "@/app/components/commons/TotalVisits";
-import UserCard from "@/app/components/commons/UserCard";
+import UserCard from "@/app/components/commons/UserCard/UserCard";
 import { auth } from "@/app/lib/auth";
 import { getProfileData, getProfileProjects } from "@/app/server/GetProfileData";
 import Link from "next/link";
