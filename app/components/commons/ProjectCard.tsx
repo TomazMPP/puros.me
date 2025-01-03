@@ -1,4 +1,5 @@
 "use client"
+
 import { ProjectData } from "@/app/server/GetProfileData";
 import Link from "next/link";
 
