@@ -7,6 +7,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import NewProject from "./NewProject";
 import { getDownloadURLFromPath } from "@/app/lib/firebase";
+import { increaseProfileVisits } from "@/app/actions/IncreaseProfileVisits";
 
 export default async function ProfilePage({
   params,
@@ -23,9 +24,11 @@ export default async function ProfilePage({
     const session = await auth();
     const isOwner = profileData.userId === session?.user?.id;
 
-    // TODO: add page views tracker
+    if (!isOwner) {
+    await increaseProfileVisits(profileId);
+    }
     // If user is not on trial anymore, not let him see the project. Redirect to upgrade
-    
+
   return (
     <div className="relative h-screen flex p-20 overflow-hidden">
       { isOwner && <div className="fixed top-0 left-0 w-full flex justify-center items-center gap-1 py-2 bg-background-tertiary">
@@ -52,9 +55,10 @@ export default async function ProfilePage({
       )}
       
      </div>
-     <div className="absolute bottom-4 right-0 left-0 w-min mx-auto">
-      <TotalVisits />
-     </div>
+     { isOwner && <div className="absolute bottom-4 right-0 left-0 w-min mx-auto">
+      <TotalVisits totalVisits={profileData.totalVisits} />
+     </div> }
+     
     </div>
   )
 }
