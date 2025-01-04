@@ -15,9 +15,9 @@ export default async function Header() {
         </div>
         </Link>
         <div className="flex items-center gap-4">
-        {session && <Button>Minha Página</Button>}
+        {session && <Button>My Page</Button>}
         <form action={manageAuth}>
-          <Button>{session ? "Sair" : "Login"}</Button>
+          <Button>{session ? "Log Out" : "Login"}</Button>
         </form>
 
           
