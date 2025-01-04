@@ -4,7 +4,6 @@ import EditSocialLinks from "./EditSocialLinks"
 import Link from "next/link"
 import { ProfileData } from "@/app/server/GetProfileData"
 import AddCustomLink from "./AddCustomLink"
-import { profile } from "console"
 import { formatUrl } from "@/app/lib/utils"
 
 export default function UserCard({
@@ -59,7 +58,6 @@ export default function UserCard({
               <AddCustomLink />
             </div>
         </div>
-        
     </div>
   )
 }
