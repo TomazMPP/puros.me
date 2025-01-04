@@ -5,6 +5,13 @@ export type ProfileData = {
   userId: string;
   totalVisits: number;
   createdAt: number;
+  socialMedias?: {
+    github: string;
+    linkedin: string;
+    instagram: string;
+    twitter: string;
+  }
+  updatedAt?: number;
 }
 
 export type ProjectData = {

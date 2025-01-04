@@ -8,15 +8,24 @@ import { useParams, useRouter } from "next/navigation";
 import createSocialLinks from "@/app/actions/CreateSocialLinks";
 import TextInput from "../../ui/TextInput";
 
-export default function EditSocialLinks() {
+export default function EditSocialLinks({
+  socialMedias,
+}: {
+  socialMedias?: {
+    github: string;
+    linkedin: string;
+    instagram: string;
+    twitter: string;
+  };
+}) {
   const router = useRouter()
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSavingSocialLinks, setIsSavingSocialLinks] = useState(false);
 
-  const [github, setGithub] = useState("");
-  const [linkedin, setLinkedin] = useState("");
-  const [instagram, setInstagram] = useState("");
-  const [twitter, setTwitter] = useState("");
+  const [github, setGithub] = useState(socialMedias?.github || "");
+  const [linkedin, setLinkedin] = useState(socialMedias?.linkedin || "");
+  const [instagram, setInstagram] = useState(socialMedias?.instagram || "");
+  const [twitter, setTwitter] = useState(socialMedias?.twitter || "");
 
   const { profileId } = useParams();
   
