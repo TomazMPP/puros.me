@@ -1,8 +1,11 @@
-import { Github, Instagram, Linkedin, Twitter, Plus } from "lucide-react"
+import { Github, Instagram, Linkedin, Twitter } from "lucide-react"
 import Button from "../../ui/Button"
 import EditSocialLinks from "./EditSocialLinks"
 import Link from "next/link"
 import { ProfileData } from "@/app/server/GetProfileData"
+import AddCustomLink from "./AddCustomLink"
+import { profile } from "console"
+import { formatUrl } from "@/app/lib/utils"
 
 export default function UserCard({
   profileData,
@@ -42,12 +45,21 @@ export default function UserCard({
 
           </div>
           </div>
-          <div className="flex flex-col gap-3 w-full h-[172px]">
+          <div className="flex flex-col gap-3 w-full min-h-[172px]">
             <div className="w-full flex flex-col items-center gap-3">
-              <Button className="w-full"> <a href="https://www.australianvisatracker.com/" target="_blank">Australian Visa Tracker</a></Button>
-              <button className="p-3 rounded-xl bg-[#1E1E1E] hover:bg-[#2E2E2E]"><Plus /></button>
+              { profileData?.link1 && <Link href={formatUrl(profileData?.link1.url)} target="_blank" className="w-full">
+              <Button className="w-full">{profileData?.link1.title}</Button>
+              </Link> }
+              { profileData?.link2 && <Link href={formatUrl(profileData?.link2.url)} target="_blank" className="w-full">
+              <Button className="w-full">{profileData?.link2.title}</Button>
+              </Link> }
+              { profileData?.link3 && <Link href={formatUrl(profileData?.link3.url)} target="_blank" className="w-full">
+              <Button className="w-full">{profileData?.link3.title}</Button>
+              </Link>} 
+              <AddCustomLink />
             </div>
         </div>
+        
     </div>
   )
 }
