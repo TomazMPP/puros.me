@@ -7,11 +7,13 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 
 export default function ProjectCard({
-  project, isOwner, img,
+  project, isOwner, img, name, description,
 }: {
   project?: ProjectData,
-  isOwner: boolean, 
+  isOwner?: boolean, 
   img: string,
+  name?: string,
+  description?: string,
 }) {
 
   const { profileId } = useParams()
@@ -37,8 +39,8 @@ export default function ProjectCard({
         }
         
         <div className="flex flex-col">
-        <span className="text-white font-bold text-xl">{project?.projectName}</span>
-        <span className="text-content-body text-sm">{project?.projectDescription}</span>
+        <span className="text-white font-bold text-xl">{name || project?.projectName}</span>
+        <span className="text-content-body text-sm">{description || project?.projectDescription}</span>
         </div>
       </div>
     </div>
