@@ -15,11 +15,7 @@ Puros.me is a modern web application that allows users to create personalized po
 
 ## 🎬 Demo
 
-[Space for demo video]
-
-## 📸 Screenshots
-
-[Space for screenshots]
+https://github.com/user-attachments/assets/681210d6-b410-4eba-bb76-8d2714ba28e0
 
 ## 🛠 Technical Stack
 
