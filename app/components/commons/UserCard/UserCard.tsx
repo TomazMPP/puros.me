@@ -5,23 +5,29 @@ import Link from "next/link"
 import { ProfileData } from "@/app/server/GetProfileData"
 import AddCustomLink from "./AddCustomLink"
 import { formatUrl } from "@/app/lib/utils"
+import EditUserCard from "./EditUserCard"
+import { profile } from "console"
+import { getDownloadURLFromPath } from "@/app/lib/firebase"
 
-export default function UserCard({
+export default async function UserCard({
   profileData,
+  isOwner
 }: {
   profileData?: ProfileData
+  isOwner: boolean
 }) {
   return (
     <div className="w-[348px] flex flex-col gap-5 items-center p-5 border border-white border-opacity-10 bg-[#121212] rounded-3xl text-white">
       <div className="size-48">
-        <img src="/Person.png" alt="Person Picture" className="rounded-full object-cover w-full h-full" />
+        <img src={await getDownloadURLFromPath(profileData?.imagePath) || "/Person.png"} alt="Person Picture" className="rounded-full object-cover w-full h-full" />
         </div>
         <div className="flex flex-col gap-2 w-full">
           <div className="flex items-center gap-2">
-            <h3 className="text-3xl font-bold min-w-0 overflow-hidden">Tomaz Pontes</h3>
+            <h3 className="text-3xl font-bold min-w-0 overflow-hidden">{profileData?.name}</h3>
+            { isOwner && <EditUserCard profileData={profileData} /> }
           </div>
           <p className="opacity-40">
-            "coding & studying. building what I like."
+            {profileData?.description}
           </p>
         </div>
         <div className="flex flex-col gap-2 w-full">
@@ -40,7 +46,7 @@ export default function UserCard({
             <Twitter />
             </Link> }
 
-            <EditSocialLinks socialMedias={profileData?.socialMedias} />
+            { isOwner && <EditSocialLinks socialMedias={profileData?.socialMedias} /> }
 
           </div>
           </div>
@@ -55,7 +61,7 @@ export default function UserCard({
               { profileData?.link3 && <Link href={formatUrl(profileData?.link3.url)} target="_blank" className="w-full">
               <Button className="w-full">{profileData?.link3.title}</Button>
               </Link>} 
-              <AddCustomLink />
+              { isOwner && <AddCustomLink /> }
             </div>
         </div>
     </div>
