@@ -1,5 +1,6 @@
 "use client"
 
+import { formatUrl } from "@/app/lib/utils";
 import { ProjectData } from "@/app/server/GetProfileData";
 import Link from "next/link";
 
@@ -11,15 +12,15 @@ export default function ProjectCard({
   img: string,
 }) {
 
-  const projectUrl = project.projectUrl
-  const formattedUrl = projectUrl.startsWith("http") ? projectUrl : `https://${projectUrl}`
+  const projectUrl = formatUrl(project.projectUrl) 
+  
 
   function handleClick() {
     console.log("clicked") // TODO: analytics
   }
   return (
-    <Link href={formattedUrl} target="_blank" onClick={handleClick}>
-    <div className="w-[340px] h-[132px] flex gap-5 bg-background-secondary p-3 rounded-[20px] border border-transparent hover:border-border-secondary">
+    <Link href={projectUrl} target="_blank" onClick={handleClick}>
+    <div className="w-[340px] min-h-[132px] max-h-96 flex gap-5 bg-background-secondary p-3 rounded-[20px] border border-transparent hover:border-border-secondary">
       <div className="size-24 rounded-md overflow-hidden flex-shrink-0">
         <img src={img} alt="Project Image Stock" className="w-full h-full object-cover" />
       </div>
