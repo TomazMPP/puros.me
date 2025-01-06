@@ -23,9 +23,6 @@ https://github.com/user-attachments/assets/681210d6-b410-4eba-bb76-8d2714ba28e0
 - **Framework**: Next.js 15.1.3
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
-- **UI Components**: Custom components with Lucide React icons
-- **Authentication**: NextAuth.js
-- **Image Handling**: browser-image-compression
 
 ### Backend
 - **Database**: Firebase Firestore
